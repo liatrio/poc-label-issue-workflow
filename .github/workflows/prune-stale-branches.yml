@@ -1,0 +1,20 @@
+name: Run Prune Stale Branch Action
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  find-stale-branches:
+    runs-on: ubuntu-latest
+    name: Find Stale Branches
+
+    steps:
+      - name: Run Stale Branch Action
+        id: stale-branch
+        uses: liatrio/prune-stale-branches-action@v0.6.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-branch-age: '1 month'
+          stale-branch-issue-age: '7 days'
+
